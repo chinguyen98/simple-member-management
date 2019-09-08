@@ -1,12 +1,19 @@
 const express = require('express');
+const handlebars = require('express-handlebars');
 
 const app = express();
 
+//Routers
+const indexRouter = require('./routes/index.route');
+
 const port = 3000;
 
-app.get('/', (req, res) => {
-    res.send('Hello World');
-});
+//Set view engine
+app.set('views', './views');
+app.engine('handlebars', handlebars({ defaultLayout: 'layout' }));
+app.set('view engine', 'handlebars');
+
+app.get('/', indexRouter);
 
 //Handle Error
 app.use((req, res, next) => {

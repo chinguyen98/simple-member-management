@@ -18,7 +18,7 @@
 	"homepage": "https://github.com/chinguyen98/simple-member-management#readme",
 	"dependencies": {
 		"express": "^4.17.1",
-		"pug": "^2.0.4"
+		"express-handlebars": "^3.1.0"
 	},
 	"devDependencies": {
 		"morgan": "^1.9.1"
