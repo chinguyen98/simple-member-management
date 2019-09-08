@@ -1,0 +1,22 @@
+{
+	"name": "simple-member-management",
+	"version": "1.0.0",
+	"description": "Login System Website",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/chinguyen98/simple-member-management.git"
+	},
+	"author": "ChiNguyen",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/chinguyen98/simple-member-management/issues"
+	},
+	"homepage": "https://github.com/chinguyen98/simple-member-management#readme",
+	"dependencies": {
+		"express": "^4.17.1"
+	}
+}
