@@ -1,12 +1,10 @@
 const express = require('express');
 const handlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
 const flash = require('connect-flash');
-const bcrypt = require('bcryptjs');
-const mongodb = require('mongodb');
-const mongoose = require('mongoose');
 
-const db = mongoose.connection;
 const app = express();
 const port = 3000;
 
@@ -19,6 +17,9 @@ app.set('views', './views');
 app.engine('handlebars', handlebars({ defaultLayout: 'layout' }));
 app.set('view engine', 'handlebars');
 
+//Handle Flash
+app.use(cookieParser());
+app.use(session({ cookie: { maxAge: null }, secret: 'secret', name: 'session', resave: false, saveUninitialized: false }))
 app.use(flash());
 
 app.use('/', indexRouter);
