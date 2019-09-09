@@ -1,0 +1,21 @@
+.successRegister, .fail{
+    list-style-type: none;
+    text-align: center;
+    width: fit-content +30px;
+    height: fit-content + 30px;
+    padding: 1rem;
+}
+
+.successRegister li{
+    font-size: 2rem;
+    color:white;
+    background-color: green;
+    margin: 1rem;
+}
+
+.fail{
+    font-size: 2rem;
+    color:white;
+    background-color: red;
+    margin: 1rem;
+}

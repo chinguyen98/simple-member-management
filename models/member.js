@@ -1,31 +1,33 @@
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/simplemembermanagement');
+mongoose.connect('mongodb://localhost/membermanagement', { useNewUrlParser: true });
 const db = mongoose.connection;
-
-const memberSchema = mongoose.Schema({
-    username: {
-        type: String,
-    },
-    password: {
-        type: String
-    },
-    name: {
-        type: String
-    }
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function () {
+	console.log('Connect successfully!!!');
 });
 
-const Member = mongoose.model('Member', memberSchema);
+const memberSchema = new mongoose.Schema({
+	username: {
+		type: String,
+	},
+	password: {
+		type: String
+	},
+	name: {
+		type: String
+	}
+});
 
-module.exports.createMember = (newUser, callback) => {
-    bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-            newUser.password = hash;
-            newUser.save(callback);
-        })
-    })
-}
+const Member = module.exports = mongoose.model('Member', memberSchema);
 
-module.exports = Member;
+module.exports.createMember = (newMember) => {
+	bcrypt.genSalt(10, (err, salt) => {
+		bcrypt.hash(newMember.password, salt, (err, hash) => {
+			newMember.password = hash;
+			newMember.save().then((member) => console.log(member));
+		})
+	});
+};
 

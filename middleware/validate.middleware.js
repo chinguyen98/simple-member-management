@@ -13,13 +13,14 @@ module.exports.validateForm = function (req, res, next) {
 		errors.push('Confirm password field is required!');
 	}
 
-	if(req.body.password!==req.body.confirmPassword){
+	if (req.body.password !== req.body.confirmPassword) {
 		errors.push('Confirm password not match!!!');
 	}
 
-	if (errors) {
+	if (errors.length) {
 		res.render('register', { errors: errors, value: req.body });
+		return;
 	}
 
 	next();
-}
+};
