@@ -1,4 +1,4 @@
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost/simplemembermanagement');
@@ -7,7 +7,6 @@ const db = mongoose.connection;
 const memberSchema = mongoose.Schema({
     username: {
         type: String,
-        index: true
     },
     password: {
         type: String
@@ -17,7 +16,7 @@ const memberSchema = mongoose.Schema({
     }
 });
 
-const Member = module.exports = mongoose.model('Member', memberSchema);
+const Member = mongoose.model('Member', memberSchema);
 
 module.exports.createMember = (newUser, callback) => {
     bcrypt.genSalt(10, (err, salt) => {
@@ -27,4 +26,6 @@ module.exports.createMember = (newUser, callback) => {
         })
     })
 }
+
+module.exports = Member;
 

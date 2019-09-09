@@ -3,7 +3,6 @@ const handlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-const flash = require('connect-flash');
 
 const app = express();
 const port = 3000;
@@ -12,15 +11,19 @@ const port = 3000;
 const indexRouter = require('./routes/index.route');
 const registerRouter = require('./routes/register.route');
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 //Set view engine
 app.set('views', './views');
-app.engine('handlebars', handlebars({ defaultLayout: 'layout' }));
+app.engine('.handlebars', handlebars({ defaultLayout: 'layout' }));
 app.set('view engine', 'handlebars');
 
-//Handle Flash
+//Handle session
+app.set('trust proxy', 1);
 app.use(cookieParser());
 app.use(session({ cookie: { maxAge: null }, secret: 'secret', name: 'session', resave: false, saveUninitialized: false }))
-app.use(flash());
+
 
 app.use('/', indexRouter);
 app.use('/register', registerRouter);
