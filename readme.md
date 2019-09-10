@@ -1,2 +1,5 @@
 Simple basic website.
-Notes: Login feature is not complete
+
+Login feature is not complete
+
+Notes: This project was created to learn basic nodejs and GIT.
